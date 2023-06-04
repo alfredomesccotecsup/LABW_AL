@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resultados</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f7f7f7;
+            background: linear-gradient(135deg, #c850c0, #4158d0, #29abe2);
+            background-size: 400% 400%;
+            animation: gradient 10s ease infinite;
+        }
+
+        h1 {
+            color: #fff;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            text-transform: uppercase;
+            animation: slideIn 1s ease-out;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+            background-color: #fff;
+        }
+
+        input[type="checkbox"] {
+            transform: scale(1.5);
+        }
+
+        .logo {
+            display: block;
+            margin: 0 auto;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            animation: spin 4s linear infinite;
+        }
+
+        .btn {
+            display: block;
+            width: 150px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #555;
+        }
+
+        @keyframes slideIn {
+            0% { opacity: 0; transform: translateY(-50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Tabla de Multiplicar</h1>
+    
+    <img class="logo" src="ImgTbMultiplicar.png" alt="Logo">
+    <table>
+        <tr th:each="resultado : ${tabla}">
+            <td th:text="${resultado}"></td>
+            <td>
+                <input type="checkbox" th:if="${resultado % 2 == 0}" checked="checked" disabled="disabled" />
+                <input type="checkbox" th:unless="${resultado % 2 == 0}" disabled="disabled" />
+            </td>
+        </tr>
+    </table>
+    <a class="btn" href="/">Regresar</a>
+</body>
+</html>
